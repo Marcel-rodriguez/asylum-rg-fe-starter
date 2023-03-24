@@ -128,9 +128,14 @@ function RenderLandingPage(props) {
           <Button
             type="default"
             style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
-            onClick={() => history.push('')}
           >
-            Read More
+            <a
+              href="https://humanrightsfirst.org/library/uscis-records-reveal-systemic-disparities-in-asylum-decisions/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Read More
+            </a>
           </Button>
         </section>
         {/* this button lets you return back to the top of the page */}
