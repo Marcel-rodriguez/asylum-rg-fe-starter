@@ -54,8 +54,8 @@ function RenderLandingPage(props) {
         </div>
       </section>
 
-      {/* <div className="graphs-section"> */}
       <div className="view-more-data-btn-container">
+        {/* this button should redirect you to the graphs page */}
         <Button
           type="default"
           style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
@@ -63,6 +63,7 @@ function RenderLandingPage(props) {
         >
           View the Data
         </Button>
+        {/* this button will download the grant rates file hosted on the url below */}
         <Button
           type="default"
           style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
@@ -78,7 +79,7 @@ function RenderLandingPage(props) {
         </Button>
       </div>
 
-      <div className="middle-section">
+      <section className="middle-section">
         <div className="hrf-img-container">
           <img src={HrfPhoto} alt="Human Rights First" className="hrf-img" />
         </div>
@@ -93,10 +94,10 @@ function RenderLandingPage(props) {
             the data set
           </h3>
         </div>
-      </div>
+      </section>
       <div>
         {/* Bottom Section: Add code here for the graphs section for your first ticket */}
-        <div className="bottom-section">
+        <section className="bottom-section">
           <h2>Systemic Disparity Insights</h2>
           <div className="bottom-section-metrics">
             <div>
@@ -123,15 +124,16 @@ function RenderLandingPage(props) {
               </p>
             </div>
           </div>
+          {/* this button should redirect you to the learn more page for disparity insights */}
           <Button
             type="default"
             style={{ backgroundColor: '#404C4A', color: '#FFFFFF' }}
-            onClick={() => history.push('/graphs')}
+            onClick={() => history.push('')}
           >
             Read More
           </Button>
-        </div>
-
+        </section>
+        {/* this button lets you return back to the top of the page */}
         <p onClick={() => scrollToTop()} className="back-to-top">
           Back To Top ^
         </p>
