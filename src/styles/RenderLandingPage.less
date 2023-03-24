@@ -49,7 +49,7 @@
 .grant-rates-container {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: end;
     margin-bottom: 2rem;
 }
 
@@ -85,6 +85,17 @@
     margin: 0 auto;
     text-align: center;
     margin-bottom: 10%;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    button{
+        margin-right: 2rem;
+    }
+
+    :hover{
+        cursor: pointer;
+    }
 }
 
 .middle-section {
@@ -109,9 +120,50 @@
     font-size: 1.4rem;
 }
 
-// .bottom-section {
-//      ADD THIS BACK IN WHEN YOU HAVE A BOTTOM SECTION
-// }
+.bottom-section {
+    margin: 5rem;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    h2{
+        margin-top: 8.5rem;
+        font-size: 3.5rem;
+        font-family: 'moneta';
+    }
+
+    button{
+        margin-top: 4.5rem;
+    }
+}
+
+.bottom-section-metrics{
+    display: flex;
+    margin-top: 8.5rem;
+    justify-content: space-evenly;
+
+    div{
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        text-align: center;
+
+        h3{
+            font-size: 3.2rem;
+            font-family: 'moneta';
+        }
+
+        p{
+            font-size: 1.2rem;
+            font-family: 'beatrice regular';
+            font-weight: 300;
+        }
+    }
+
+}
 
 .back-to-top {
     width: 8%;

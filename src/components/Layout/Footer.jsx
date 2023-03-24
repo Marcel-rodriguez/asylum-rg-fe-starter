@@ -56,6 +56,7 @@ function SubFooter() {
         {Object.entries(button_links_by_text).map(text_link_pair => {
           return (
             <Button
+              key={text_link_pair[0]}
               type="text"
               size="small"
               href={text_link_pair[1]}
