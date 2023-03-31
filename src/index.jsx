@@ -19,13 +19,17 @@ import { HeaderContent } from './components/Layout/Header';
 import { Layout } from 'antd';
 import GraphsContainer from './components/pages/DataVisualizations/GraphsContainer';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
 import reducer from './state/reducers';
 import { colors } from './styles/data_vis_colors';
 
+//import for redux logger
+import logger from 'redux-logger';
+
 const { primary_accent_color } = colors;
 
-const store = configureStore({ reducer: reducer });
+const store = configureStore({ reducer: reducer }, applyMiddleware(logger));
+
 ReactDOM.render(
   <Router>
     <Provider store={store}>
