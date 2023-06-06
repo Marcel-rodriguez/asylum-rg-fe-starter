@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useStore } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import CitizenshipMapAll from './Graphs/CitizenshipMapAll';
 import CitizenshipMapSingleOffice from './Graphs/CitizenshipMapSingleOffice';
@@ -50,7 +50,12 @@ function GraphWrapper(props) {
         break;
     }
   }
-  function updateStateWithNewData(years, view, office, stateSettingCallback) {
+  async function updateStateWithNewData(
+    years,
+    view,
+    office,
+    stateSettingCallback
+  ) {
     /*
           _                                                                             _
         |                                                                                 |
@@ -70,45 +75,53 @@ function GraphWrapper(props) {
         |                                                                                 |
           _                                                                             _
                                    -- Mack 
-    
-    */
+*/
+    //axios calls endpoints for citizenship and time-series data
+
+    const fiscalEndpoint = `${process.env.REACT_APP_API_URI}/fiscalSummary`;
+    const citizenshipEndpoint = `${process.env.REACT_APP_API_URI}/citizenshipSummary`;
+
+    //Common parameters for the axios calls
+    const officeParams = {
+      params: {
+        from: years[0],
+        to: years[1],
+        office: office,
+      },
+    };
+    const defaultParams = {
+      params: {
+        from: years[0],
+        to: years[1],
+      },
+    };
 
     if (office === 'all' || !office) {
-      axios
-        .get(process.env.REACT_APP_API_URI, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      const fiscalCall = await axios.get(fiscalEndpoint, defaultParams);
+      const citizenshipCall = await axios.get(
+        citizenshipEndpoint,
+        defaultParams
+      );
+
+      fiscalCall.data['citizenshipResults'] = citizenshipCall.data;
+      console.log(fiscalCall);
+      stateSettingCallback(view, office, [fiscalCall.data]);
     } else {
-      axios
-        .get(process.env.REACT_APP_API_URI, {
-          // mock URL, can be simply replaced by `${Real_Production_URL}/summary` in prod!
-          params: {
-            from: years[0],
-            to: years[1],
-            office: office,
-          },
-        })
-        .then(result => {
-          stateSettingCallback(view, office, test_data); // <-- `test_data` here can be simply replaced by `result.data` in prod!
-        })
-        .catch(err => {
-          console.error(err);
-        });
+      const fiscalCall = await axios.get(fiscalEndpoint, officeParams);
+      const citizenshipCall = await axios.get(
+        citizenshipEndpoint,
+        officeParams
+      );
+
+      fiscalCall.data['citizenshipResults'] = citizenshipCall.data;
+      console.log(fiscalCall);
+      stateSettingCallback(view, office, [fiscalCall.data]);
     }
   }
   const clearQuery = (view, office) => {
     dispatch(resetVisualizationQuery(view, office));
   };
+
   return (
     <div
       className="map-wrapper-container"
