@@ -89,13 +89,13 @@ function YearLimitsSelect(props) {
         minHeight: '50px',
       }}
     >
-      <YearLimitsSlider
+      {/* <YearLimitsSlider
         office={office}
         view={view}
         lowerLimit={2015}
         upperLimit={2022}
         step={1}
-      />
+      /> */}
       <Form
         form={form}
         name="yearLimitsSelect"
