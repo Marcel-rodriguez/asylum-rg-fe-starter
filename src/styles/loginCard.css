@@ -1,0 +1,15 @@
+.loginCard{
+    height: 60vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginCard button{
+    cursor: pointer;
+    width: 5rem;
+
+}
